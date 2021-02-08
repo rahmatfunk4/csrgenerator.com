@@ -1,12 +1,10 @@
-<!doctype html>
-<html lang="en">
-  <head>
+<html lang="en"><head>
     <title>CSR Generator | Generate a Certificate Signing Request in seconds!</title>
-    <meta http-equiv="content-type" content="application/xhtml+xml; charset=utf-8" />
+    <meta http-equiv="content-type" content="application/xhtml+xml; charset=utf-8">
     <meta name="description" content="Secure and easy Certificate Signing Request generation for your SSL certificates.">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="shortcut icon" href="/static/img/favicon.ico" />
-    <link rel="stylesheet" href="/static/css/spectre.min.css" />
+    <link rel="shortcut icon" href="/static/img/favicon.ico">
+    <link rel="stylesheet" href="/static/css/spectre.min.css">
     <style>
         .bg-grey {
             background-color: #efefef;
@@ -32,32 +30,80 @@
     <div class="container grid-960">
       <div class="columns">
         <div class="centered column col-8">
-          {% block header %}
+          
           <header class="navbar">
             <section class="navbar-section">
-              <a href="https://csrgenerator.com" class="navbar-brand">CSR Generator</a>
+              <a href="https://csr.pusatssl.com" class="navbar-brand">CSR Generator</a>
             </section>
             <section class="navbar-section">
-              <a href="{{ url_for('security') }}" class="btn btn-link" />security</a>
-              <a href="https://github.com/DavidWittman/csrgenerator.com" class="btn btn-link" />github</a>
+              <a href="https://pusatssl.com" class="btn btn-link">pusatssl.com</a>
             </section>
           </header>
-          {% endblock %}
-          {% block body %}{% endblock %}
+          
+          
+      <div class="text-center">
+        <h4>Generate a Certificate Signing Request</h4>
+        <p>Complete this form to generate a new CSR and private key.</p>
+      </div>
+      <div class="columns">
+        <div class="centered column col-10 bg-grey">
+          <form>
+            <div class="form-group">
+              <label class="form-label tooltip tooltip-left" data-tooltip="Two letter abbreviation" for="C">Country</label>
+              <input class="form-input input-lg" type="text" name="C" placeholder="US" required="" maxlength="2" autofocus="" pattern="[A-Z]{2}">
+            </div>
+            <div class="form-group">
+              <label class="form-label tooltip tooltip-left" data-tooltip="Full state name" for="ST">State</label>
+              <input class="form-input input-lg" type="text" placeholder="Texas" name="ST" required="">
+            </div>
+            <div class="form-group">
+              <label class="form-label tooltip tooltip-left" data-tooltip="Full city name" for="L">Locality</label>
+              <input class="form-input input-lg" type="text" placeholder="San Antonio" name="L" required="">
+            </div>
+            <div class="form-group">
+              <label class="form-label tooltip tooltip-left" data-tooltip="Full legal company or personal name" for="O">Organization</label>
+              <input class="form-input input-lg" type="text" placeholder="Big Bob's Beepers" name="O" required="">
+            </div>
+            <div class="form-group">
+              <label class="form-label tooltip tooltip-left" data-tooltip="Branch of organization" for="OU">Organizational Unit</label>
+              <input class="form-input input-lg" type="text" placeholder="Marketing" name="OU" required="">
+            </div>
+            <div class="form-group">
+              <label class="form-label tooltip tooltip-left" data-tooltip="The FQDN for your domain" for="CN">Common Name</label>
+              <input class="form-input input-lg" type="text" placeholder="example.com" name="CN" required="">
+            </div>
+            <div class="form-group">
+              <label class="form-label tooltip tooltip-left" data-tooltip="Size of the RSA modulus in bits">Key Size</label>
+              <label class="form-radio">
+                <input type="radio" name="keySize" value="2048" checked="">
+                <i class="form-icon"></i> 2048
+              </label>
+              <label class="form-radio">
+                <input type="radio" name="keySize" value="4096">
+                <i class="form-icon"></i> 4096
+              </label>
+            </div>
+            <button class="btn btn-primary centered">Generate CSR</button>
+          </form>
+        </div>
+      </div>
+      <div id="csr-modal" class="modal">
+        <div class="modal-overlay"></div>
+        <div class="modal-container tall no-max-height">
+          <div class="modal-header">
+            <button type="button" class="btn btn-clear close float-right"></button>
+          </div>
+          <div class="modal-body no-max-height">
+            <div class="content">
+              <textarea id="csr" rows="47" cols="65" readonly="readonly"></textarea>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button class="btn close btn-link">Close</button>
+          </div>
+        </div>
+      </div>
         </div>
       </div>
     </div>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-    <script type="text/javascript" src="/static/js/main.js"></script>
-    <script type="text/javascript">
-      var _gaq = _gaq || [];
-      _gaq.push(['_setAccount', 'UA-28493273-1']);
-      _gaq.push(['_trackPageview']);
-      (function() {
-        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
-      })();
-    </script>
-  </body>
-</html>
+</body></html>
